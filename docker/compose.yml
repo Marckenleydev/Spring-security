@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql_db:
+    container_name: mysql_container
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: petitphat1
+      MYSQL_DATABASE: docdatabase
+      MYSQL_PASSWORD: petitphat1
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_volume:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  mysql_volume:
